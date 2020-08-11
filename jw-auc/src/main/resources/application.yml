@@ -1,0 +1,35 @@
+server:
+  port: 8001
+
+spring:
+  application:
+    name: jw-auch-center
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848 #配置Nacos地址
+        enable: false
+  datasource:
+    #    type: com.alibaba.druid.pool.DruidDataSource  #当前数据源操作类型
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/jw-project?characterEncoding=utf8&useSSL=false&useUnicode=true&serverTimezone=UTC
+    username: root
+    password: root
+  jpa:
+    open-in-view: true
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    properties:
+      javax:
+        persistence:
+          validation:
+            mode: none
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
