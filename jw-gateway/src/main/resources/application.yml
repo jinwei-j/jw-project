@@ -1,0 +1,28 @@
+server:
+  port: 9527
+spring:
+  application:
+    name: jw-gateway-center
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+        enable: true
+    gateway:
+      discovery:
+        locator:
+          enabled: true # 开启从注册中心动态创建路由的功能，利用微服务名称进行路由
+      routes:
+      - id: bus_route # 路由的id,没有规定规则但要求唯一,建议配合服务名
+        #匹配后提供服务的路由地址
+        #        uri: http://localhost:83
+        uri: lb://genealogy-server
+        predicates:
+        - Path=/china-gen/comm/** # 断言，路径相匹配的进行路由，改为自己的
+#      - id: bus_route2
+#        #uri: http://localhost:8001
+#        uri: lb://CLOUD-PAYMENT-SERVICE
+#        predicates:
+#        - Path=/payment/lb/** #断言,路径相匹配的进行路由
+#        - After=2020-03-16T10:06:42.873+08:00[Asia/Shanghai]
+
