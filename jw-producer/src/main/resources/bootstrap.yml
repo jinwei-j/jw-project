@@ -1,0 +1,25 @@
+# nacos配置
+server:
+  port: 8001
+
+spring:
+  application:
+    name: jw-producer
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848 #Nacos服务注册中心地址
+      config:
+        server-addr: 127.0.0.1:8848 #Nacos作为配置中心地址
+        file-extension: yaml #指定yaml格式的配置
+        group: DEV_GROUP
+        namespace: 681b326d-a89f-49eb-b6a6-91e2d9d6960f
+
+# ${spring.application.name}-${spring.profile.active}.${spring.cloud.nacos.config.file-extension}
+# nacos-config-client-dev.yaml
+
+# nacos-config-client-test.yaml   ----> config.info
+
+
+
+
